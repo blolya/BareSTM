@@ -4,10 +4,24 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "debug",
+      "type": "shell",
+      "command": "cat /dev/ttyUSB0",
+      "group": "build",
+      "presentation": {
+        "group": "run"
+      },
+      "problemMatcher": [],
+    },
+    {
       "label": "build",
       "type": "shell",
       "command": "make",
       "group": "build",
+      "presentation": {
+        "group": "run",
+        "panel": "shared"
+      },
       "problemMatcher": [],
     },
     {
@@ -15,6 +29,10 @@
       "type": "shell",
       "command": "make flash",
       "group": "build",
+      "presentation": {
+        "group": "run",
+        "panel": "shared"
+      },
       "problemMatcher": []
     },
     {
@@ -22,6 +40,10 @@
       "type": "shell",
       "command": "make erase",
       "group": "build",
+      "presentation": {
+        "group": "run",
+        "panel": "shared"
+      },
       "problemMatcher": []
     },
     {
@@ -29,6 +51,10 @@
       "type": "shell",
       "command": "make clear",
       "group": "build",
+      "presentation": {
+        "group": "run",
+        "panel": "shared"
+      },
       "problemMatcher": []
     }
   ]
