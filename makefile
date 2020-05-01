@@ -13,8 +13,6 @@ CONFIGS = ./config
 # list of source files
 SOURCES  = ./src/main.c
 SOURCES += $(STD_PERIPH_LIBS)/Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/system_stm32f10x.c
-SOURCES += $(STD_PERIPH_LIBS)/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.c
-SOURCES += $(STD_PERIPH_LIBS)/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c
 SOURCES += $(STD_PERIPH_LIBS)/Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/TrueSTUDIO/startup_stm32f10x_md.s
 
 # name for output binary files
@@ -28,17 +26,16 @@ OBJCOPY = arm-none-eabi-objcopy
 ST_FLASH ?= st-flash
 
 # specify compiler flags
-CFLAGS  = -g -O2 -Wall
+CFLAGS  = -g3 -Wall
 CFLAGS += -T$(STD_PERIPH_LIBS)/Project/STM32F10x_StdPeriph_Template/TrueSTUDIO/STM3210B-EVAL/stm32_flash.ld
-CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m4 -mthumb-interwork
-CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
-CFLAGS += -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER
-CFLAGS += -Wl,--gc-sections
+CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m3
+CFLAGS += -DSTM32F10X_MD 
+CFLAGS += -Wl,--gc-sections --specs=nano.specs --specs=nosys.specs
 CFLAGS += -I.
-CFLAGS += -I$(STD_PERIPH_LIBS)/Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/
-CFLAGS += -I$(STD_PERIPH_LIBS)/Libraries/CMSIS/CM3/CoreSupport
-CFLAGS += -I$(STD_PERIPH_LIBS)/Libraries/STM32F10x_StdPeriph_Driver/inc
-CFLAGS += -I$(CONFIGS)
+CFLAGS += -I $(STD_PERIPH_LIBS)/Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/
+CFLAGS += -I $(STD_PERIPH_LIBS)/Libraries/CMSIS/CM3/CoreSupport
+CFLAGS += -I $(STD_PERIPH_LIBS)/Libraries/STM32F10x_StdPeriph_Driver/inc
+CFLAGS += -I $(CONFIGS)
 
 OBJS = $(SOURCES:.c=.o)
 
